@@ -1,0 +1,55 @@
+---
+Faça você mesmo
+---
+1°
+```{r}
+ana = 8L
+paulo = 12L
+print(ifelse(ana > paulo, "A menina é mais velha","O menino é mais velho"))
+
+```
+
+2°
+```{r}
+BOD
+class(BOD)
+```
+
+3°
+```{r}
+x = 1:10
+print(x)
+seq(2,10,2)
+
+```
+
+4°
+```{r}
+women
+tail(women, n=10)
+```
+
+
+5°
+```{r}
+iris[c(50:100),]
+x = iris$Sepal.Width[c(50:100)]
+y = iris$Sepal.Length[c(50:100)]
+plot(x,y)
+```
+
+6°
+```{r}
+a = 1:10
+b = 1:10
+print(a+b)
+```
+
+7°
+```{r}
+CO2
+dim(CO2)
+colnames(CO2)
+rownames(CO2)
+```
+

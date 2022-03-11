@@ -1,0 +1,36 @@
+Diretório de trabalho
+```{r}
+# Para saber o diretório do arquivo
+getwd()
+```
+Tipo do objeto
+```{r}
+class(iris)
+```
+Salvar um objeto
+```{r}
+# Clona
+iristeste = iris
+# Salva
+save(iristeste, file = "iristeste.Rdata")
+#remove do r 
+rm(iristeste)
+#testa a remoção
+iristeste
+```
+carrega
+```{r}
+#Carrega o objeto do disco
+load(file = "iristeste.Rdata")
+#testa
+iristeste
+```
+vetor e gráfico básico
+```{r}
+x = c(12,16,34,38,56,79)
+y = c(1,3,6,9,11,14)
+plot(x,y)
+```
+
+
+
