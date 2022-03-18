@@ -32,10 +32,7 @@ tail(women, n=10)
 
 5°
 ```{r}
-iris[c(50:100),]
-x = iris$Sepal.Width[c(50:100)]
-y = iris$Sepal.Length[c(50:100)]
-plot(x,y)
+plot(iris[50:100,c(2,3)])
 ```
 
 6°
