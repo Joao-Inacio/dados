@@ -1,5 +1,5 @@
 # Formação Cientista de Dados em R
-Curso de ciência de dados da udemy do professor Fernando Amaral 
+Curso de ciência de dados da udemy do professor Fernando Amaral.
 <br>
 Neste repositório ficará todos os scripts e conteúdo em R
 <div>
