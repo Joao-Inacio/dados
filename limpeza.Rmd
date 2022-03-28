@@ -12,7 +12,7 @@ Colunas
 ```{r}
 # Dar nomes corretos as colunas
 colnames(dados) = c("Id","Score","Estado","Genero","Idade","Patrimonio","Saldo",
-                    "Produtos","TemCartCredito","Ativo","Salario","Saiu")
+                    "Produtos","TemCartCredito","Ativo","'Salario","Saiu")
 head(dados)
 ```
 Explorar dados, colunas categóricas 
@@ -52,8 +52,52 @@ boxplot(dados$Salario, outline = F)
 Valores faltantes - NAs
 ```{r}
 # Valores faltantes NAs
-dados[!complete.cases(dados),]
+dados[!complete.cases(dados),] # ! diferente c.c() colunas completas
 ```
+Salários 
+```{r}
+# tratar salários 
+summary(dados$Salario)
+# ver mediana
+median(dados$Salario,na.rm = T)
+# Atribuir mediana a NAs
+dados[is.na(dados$Salario),]$Salario = median(dados$Salario,na.rm = T)
+# buscar NAs em salário para checar
+dados[!complete.cases(dados$Salario),]
+```
+Falta de padronização em Gênero
+```{r}
+# ver valores
+unique(dados$Genero)
+summary(dados$Genero)
+# transformar F e Fem em Feminino
+# "", M em Masculino (Moda)
+dados[is.na(dados$Genero) | dados$Genero == "M" ,]$Genero = "Masculino"
+dados[dados$Genero == "F" | dados$Genero == "Fem", ]$Genero = "Feminino"
+# Ver resultado
+summary(dados$Genero)
+#remover levels não utilizados
+dados$Genero = factor(dados$Genero)
+# Visualizar novamente
+summary(dados$Genero)
+```
+Idades fora do domínio
+```{r}
+summary(dados$Idade)
+# fora do dominio, numérico - ver idades anormais
+dados[dados$Idade<0 | dados$Idade>110 ,]$Idade
+# Não temos idade NAs
+dados[is.na(dados$Idade) ,]
+# opção, preecher com mediana
+median(dados$Idade)
+# subtituição
+dados[dados$Idade<0 | dados$Idade>110 ,]$Idade = median(dados$Idade)
+# buscamos novamente idades anormais
+dados[dados$Idade<0 | dados$Idade>110 ,]
+summary(dados$Idade)
+```
+
+
 
 
 
