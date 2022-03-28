@@ -1,0 +1,61 @@
+---
+Formação Cientista de Dados
+Limpeza e Tratamento de Dados
+---
+```{r}
+# importa dados, string vazio com NA, string como fatores
+dados = read.csv("Churn.csv", sep = ";", na.strings = "", stringsAsFactors=T)
+head(dados)
+summary(dados)
+```
+Colunas
+```{r}
+# Dar nomes corretos as colunas
+colnames(dados) = c("Id","Score","Estado","Genero","Idade","Patrimonio","Saldo",
+                    "Produtos","TemCartCredito","Ativo","Salario","Saiu")
+head(dados)
+```
+Explorar dados, colunas categóricas 
+```{r}
+# Estados 
+counts = table(dados$Estado)
+barplot(counts, main="Estados", xlab="Estados")
+# Gênero
+counts = table(dados$Genero)
+barplot(counts, main="Gêneros", xlab="Gêneros")
+```
+Explorar, colunas numéricas
+```{r}
+# Score
+summary(dados$Score)
+boxplot(dados$Score)
+hist(dados$Score)
+```
+Idade
+```{r}
+summary(dados$Idade)
+boxplot(dados$Idade)
+hist(dados$Idade)
+```
+Saldo
+```{r}
+summary(dados$Saldo)
+boxplot(dados$Saldo)
+hist(dados$Saldo)
+```
+Salário
+```{r}
+summary(dados$Salario)
+boxplot(dados$Salario)
+boxplot(dados$Salario, outline = F)
+```
+Valores faltantes - NAs
+```{r}
+# Valores faltantes NAs
+dados[!complete.cases(dados),]
+```
+
+
+
+
+
