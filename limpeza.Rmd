@@ -12,7 +12,7 @@ Colunas
 ```{r}
 # Dar nomes corretos as colunas
 colnames(dados) = c("Id","Score","Estado","Genero","Idade","Patrimonio","Saldo",
-                    "Produtos","TemCartCredito","Ativo","'Salario","Saiu")
+                    "Produtos","TemCartCredito","Ativo","Salario","Saiu")
 head(dados)
 ```
 Explorar dados, colunas categóricas 
@@ -96,6 +96,50 @@ dados[dados$Idade<0 | dados$Idade>110 ,]$Idade = median(dados$Idade)
 dados[dados$Idade<0 | dados$Idade>110 ,]
 summary(dados$Idade)
 ```
+Dados duplicados
+```{r}
+# buscar duplicados pelo ID
+x = dados[duplicated(dados$Id),]
+x
+# verificamos que o ID 81 está duplicado
+# vamos excluir pelo ID não pelo indice 
+# dados = dados[ !dados$Id %in% c(x$Id),]
+dados = dados[-c(82),]
+# buscamos a linha que estava duplicada
+dados[dados$Id == x$Id ,]
+# verificamos novamente duplicados
+x = dados[duplicated(dados$Id),]
+x
+```
+Estado fora do domínio
+```{r}
+# fora do dominio - categorico
+unique(dados$Estado)
+summary(dados$Estado)
+# preencher com a moda, RS
+dados[!dados$Estado %in% c("RS","SC","PR"),]$Estado ="RS"
+summary(dados$Estado)
+# removemos fotares não usados
+dados$Estado = factor(dados$Estado)
+# visualizar novamente
+summary(dados$Estado)
+```
+Outliers
+```{r}
+# outliers, criando um parametro com desvio padrão
+desv = sd(dados$Salario, na.rm = T)
+dados[dados$Salario >= 2 *desv , ]$Salario
+# outra forma, resultado semelhate, mas sem os NAs
+boxplot(dados$Salario)
+x = boxplot(dados$Salario)$out
+x
+# Atualizamos todos para mediana
+median(dados$Salario)
+dados[dados$Salario >= 2 *desv , ]$Salario = median(dados$Salario)
+# Checamos se sairam os outliers
+dados[dados$Salario >= 2 *desv , ]$Salario
+```
+
 
 
 
