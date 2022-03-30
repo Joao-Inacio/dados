@@ -1,0 +1,71 @@
+---
+Limpeza e Tratamento de Dados
+---
+```{r}
+dados = read.csv('tempo.csv', sep = ';', na.strings = '', stringsAsFactors = T)
+dados
+head(dados)
+summary(dados)
+```
+```{r}
+# valores faltantes NAs
+dados[!complete.cases(dados),]
+```
+```{r}
+# tratar Umidade
+summary(dados$Umidade)
+#
+median(dados$Umidade,na.rm = T)
+# Atribuir mediana a NAs
+dados[is.na(dados$Umidade),]$Umidade = median(dados$Umidade,na.rm = T)
+#
+dados[!complete.cases(dados$Umidade),]
+#
+dados[!complete.cases(dados),]
+```
+```{r}
+# trata vento
+summary(dados$Vento)
+# Tratando NAs para a moda 
+dados[is.na(dados$Vento),]$Vento = 'FALSO'
+dados
+# buscar NAS em Vento para checar
+dados[!complete.cases(dados),]
+```
+```{r}
+# trata aparência
+summary(dados$Aparencia)
+#
+dados[!dados$Aparencia %in% c('sol','chuva','nublado'),]$Aparencia = 'sol'
+# removendo factores não usado
+dados$Aparencia = factor(dados$Aparencia)
+# 
+summary(dados$Aparencia)
+
+```
+```{r}
+# tratando a temperatura
+summary(dados$Temperatura)
+# olhando a mediana
+median(dados$Temperatura)
+# substituido valores elevado pela mediana
+dados[dados$Temperatura < -130 | dados$Temperatura > 130 ,]$Temperatura = median(dados$Temperatura)
+# checando os valores
+summary(dados$Temperatura)
+```
+```{r}
+# Tratando a Umidade
+summary(dados$Umidade)
+# mediana
+median(dados$Umidade)
+#
+dados[dados$Umidade<0 | dados$Umidade>100 ,]$Umidade = median(dados$Umidade)
+#
+summary(dados$Umidade)
+```
+
+```{r}
+summary(dados)
+dados
+```
+
