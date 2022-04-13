@@ -1,0 +1,28 @@
+---
+Tabelas
+---
+```{r}
+install.packages("stargazer")
+library(stargazer)
+```
+Formato Latex
+```{r}
+stargazer(iris)
+```
+Html
+```{r}
+stargazer(iris, type="html")
+```
+Texto
+```{r}
+stargazer(iris, type='text')
+```
+Salva em disco
+```{r}
+stargazer(women, out='women.tex', summary=FALSE)
+```
+
+
+
+
+
